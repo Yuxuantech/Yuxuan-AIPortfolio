@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", serif;
+
+  --color-sunset-top: #cfd0c3;
+  --color-sunset-mid: #f5d4a1;
+  --color-cream: #f4e9d8;
+  --color-earth: #2d1e14;
+  --color-sage: #fbcfe8; /* Light pink base */
+  --color-pink-orange: linear-gradient(135deg, #fbcfe8 0%, #ffedd5 100%);
+  --color-morandi-pink: #d8a7b1;
+  --color-y2k-gradient: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 50%, #eff6ff 100%);
+  --color-y2k-liquid: linear-gradient(135deg, #fbcfe8 0%, #e9d5ff 50%, #bfdbfe 100%);
+}
+
+@layer base {
+  body {
+    @apply bg-white text-earth font-sans overflow-x-hidden selection:bg-morandi-pink/30;
+    background: var(--color-y2k-gradient);
+  }
+
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-module {
+    @apply bg-white/40 backdrop-blur-[30px] border border-white/50 transition-all duration-500 ease-out shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+  }
+
+  .section-hero {
+    background: var(--color-y2k-gradient);
+    position: relative;
+  }
+
+  .land-wave {
+    @apply absolute bottom-0 left-0 w-full h-[140px] z-10;
+    background: var(--color-y2k-liquid);
+    clip-path: ellipse(80% 100% at 50% 100%);
+    opacity: 0.6;
+  }
+
+  .section-content {
+    @apply relative z-20 -mt-[1px];
+    background: var(--color-y2k-gradient);
+    position: relative;
+  }
+
+  .section-contact {
+    @apply relative z-30 overflow-hidden;
+    background: linear-gradient(135deg, #fce7f3 0%, var(--color-morandi-pink) 100%);
+    box-shadow: 0 -20px 50px rgba(216, 167, 177, 0.3);
+  }
+
+  .timeline-line {
+    @apply absolute left-1 top-0 bottom-0 w-[0.5px] bg-earth opacity-20;
+  }
+
+  .breathe-text {
+    animation: breathe-warm 4s infinite ease-in-out;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
+
+@keyframes breathe-warm {
+  0%, 100% { opacity: 0.4; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); color: var(--color-earth); }
+}
